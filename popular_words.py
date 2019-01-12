@@ -1,6 +1,11 @@
 def popular_words(text: str, words: list) -> dict:
-    # your code here
-    return None
+    lower_text = text.lower()
+    popular = {}
+    all_words = lower_text.replace('\n', ' ').split(' ')
+    for word in words:
+        popular.update({word: all_words.count(word)})
+    sorted_by_value = sorted(popular.items(), key=lambda kv: kv[1], reverse=True)
+    return dict(sorted_by_value)
 
 
 if __name__ == '__main__':
