@@ -3,4 +3,3 @@ base_dict = [{'Номен': [[123456], [54654], [78977], [1, 2, 3]], 'bla': 456}
              {'Номен': [[4894], [15615], [456454]], 'bla': 456}]
 
 print([a for j in [i['Номен'] for i in base_dict] for a in j for a in a])
-
