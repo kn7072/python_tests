@@ -21,21 +21,26 @@ def calc(key):
     dynamic = '00123456789'
     calc = '+-*/'
     if key == '=':
-        global input_flag
-        input_flag = False
         if calc_entry.get():
-            try:
-                result_entry.delete(0, 100)
-                result = eval(calc_entry.get())
-                result_entry.insert(END, str(result))
-            except ZeroDivisionError:
-                messagebox.showerror('Ошибка', 'На ноль делить нельзя')
-                calc_entry.delete(0, 100)
-                result_entry.delete(0, 100)
-            except:
-                messagebox.showerror('Ошибка', 'Проверьте правильность данных')
-                calc_entry.delete(0, 100)
-                result_entry.delete(0, 100)
+            empty = False   #Если в окне ввода не знака действия, то знак = не выдаст результат
+            for el in calc_entry.get():
+                if el in calc:
+                    empty = True
+            if empty:
+                global input_flag
+                input_flag = False
+                try:
+                    result_entry.delete(0, 100)
+                    result = eval(calc_entry.get())
+                    result_entry.insert(END, str(result))
+                except ZeroDivisionError:
+                    messagebox.showerror('Ошибка', 'На ноль делить нельзя')
+                    calc_entry.delete(0, 100)
+                    result_entry.delete(0, 100)
+                except:
+                    messagebox.showerror('Ошибка', 'Проверьте правильность данных')
+                    calc_entry.delete(0, 100)
+                    result_entry.delete(0, 100)
         else:
             messagebox.showerror('Ошибка', 'ЭЭЭЭй! Тут пусто')
     if key == 'C':
@@ -51,7 +56,7 @@ def calc(key):
         else:
             calc_entry.insert(END, key)
         if key in dynamic:
-            f = False
+            f = False               # Если в окне ввода есть цифра и знаки действия, то результат выводиться динамически
             for a in calc_entry.get():
                 if a in calc:
                     f = True
@@ -98,17 +103,5 @@ calc_entry = Entry(root, width=20)
 result_entry = Entry(root, width=15)
 calc_entry.grid(row=0, column=0, columnspan=3)
 result_entry.grid(row=0, column=3, columnspan=3)
-def de():
-    parse = calc_entry.get()
-    for i in parse:
-        if i in calc:
-            try:
-                if calc_entry.get():
-                    result_entry.delete(0, 100)
-                    result_entry.insert(END, eval(calc_entry.get()))
-            except:
-                result_entry.delete(0, 100)
-                pass
-de()
 
 root.mainloop()
