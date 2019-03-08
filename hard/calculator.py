@@ -46,7 +46,10 @@ def calc(key):
             calc_entry.delete(0, 100)
             result_entry.delete(0, 100)
         input_flag = True
-        calc_entry.insert(END, key)
+        if str(calc_entry.get()) == '' and key in calc:
+            pass
+        else:
+            calc_entry.insert(END, key)
         if key in dynamic:
             f = False
             for a in calc_entry.get():
