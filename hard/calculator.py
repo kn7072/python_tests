@@ -18,12 +18,14 @@ input_flag = True
 
 def calc(key):
     to_print = '00123456789+-*/.'
-    calc = '+-/*'
+    dynamic = '00123456789'
+    calc = '+-*/'
     if key == '=':
         global input_flag
         input_flag = False
         if calc_entry.get():
             try:
+                result_entry.delete(0, 100)
                 result = eval(calc_entry.get())
                 result_entry.insert(END, str(result))
             except ZeroDivisionError:
@@ -45,6 +47,15 @@ def calc(key):
             result_entry.delete(0, 100)
         input_flag = True
         calc_entry.insert(END, key)
+        if key in dynamic:
+            f = False
+            for a in calc_entry.get():
+                if a in calc:
+                    f = True
+            if f:
+                result_entry.delete(0, 100)
+                result = eval(calc_entry.get())
+                result_entry.insert(END, str(result))
     if key == '√':
         try:
             num = int(calc_entry.get())
