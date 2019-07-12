@@ -5,7 +5,7 @@ right_answers = []
 
 for question in questions_and_answers:
     print('===================================================================')
-    print(question)
+    print(question)  # Вывод вопроса на экран
     print('===================================================================')
     answer = None
     wrong = False
