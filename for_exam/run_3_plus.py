@@ -10,8 +10,10 @@ for question in questions_and_answers:
     answer = None
     wrong = False
     while not answer:
-        answer = input('Введите один или несколько вариантов ответа через пробел: ')
-    answer = [int(i) for i in answer.split(' ')]
+        answer = input('Введите один или несколько вариантов ответа: ')
+        if not answer.isdigit():
+            answer = None
+    answer = [int(i) for i in answer]
     if answer == [0]:
         break
     for i in answer:
