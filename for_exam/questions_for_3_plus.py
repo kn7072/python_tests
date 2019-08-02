@@ -105,7 +105,7 @@ questions_and_answers = {'Для чего создан cloud.sbis.ru?\n'
                          '2. ELEMENT_OUTPUT_LOG = locator\n'
                          '3. ELEMENT_OUTPUT_LOG = name\n'
                          '4. NAME_ELEMENT = name\n'
-                         '5. ELEMENT_NAME = name': [5],
+                         '5. ELEMENT_NAME = name': [1],
 
                          'Что нельзя делать на боевых серверах?\n'
                          '1. Осуществлять редактирование любых любых контрагентов\n'
